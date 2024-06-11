@@ -45,7 +45,6 @@ const structure = {
         ],
         "execution": ["location"],
         "expect": [
-            // Methods
             'to.be',
             'to.not',
             'to.equal',
@@ -81,50 +80,43 @@ const structure = {
             'to.have.length',
             'to.be.within',
             'to.not.be.within',
-            // Properties
-            'response', // Access the response object
-            'environment', // Access the environment object
-            'globals', // Access the globals object
-            'collectionVariables', // Access the collectionVariables object
-            'pm', // Access the pm object
-            'responseTime', // The response time of the request in milliseconds
-            'responseCode', // The status code of the response
-            'responseHeaders', // The headers of the response
-            'responseBody', // The body of the response
-            'environmentVariables', // The environment variables
-            'globalsVariables', // The global variables
-            'collectionVariablesVariables' // The collection variables
+            'response', 
+            'environment', 
+            'globals', 
+            'collectionVariables', 
+            'pm', 
+            'responseTime', 
+            'responseCode', 
+            'responseHeaders', 
+            'responseBody', 
+            'environmentVariables', 
+            'globalsVariables', 
+            'collectionVariablesVariables'
         ],
         "globals": [
-            // Methods
             'get',
             'set',
             'unset',
-            // Properties
-            'variables' // The global variables
+            'variables'
         ],
         "info": [
-            // Methods
             'environment',
             'iteration',
             'request',
             'response',
             'variables',
-            // Properties
-            'environment', // The environment details
-            'request', // The request details
-            'response', // The response details
-            'collection' // The collection details
+            'environment', 
+            'request', 
+            'response', 
+            'collection'
         ],
         "iterationData": [
-            // Properties
-            'vars', // The iteration data variables
-            'cursor', // The cursor of the current iteration
-            'cycles', // The number of cycles in the iteration
-            'position' // The position in the iteration
+            'vars', 
+            'cursor', 
+            'cycles', 
+            'position'
         ],
         "request": [
-            // Methods
             'auth',
             'body',
             'clearTimeout',
@@ -136,27 +128,24 @@ const structure = {
             'removeHeader',
             'send',
             'timeout',
-            // Properties
-            'method', // The request method
-            'url', // The request URL
-            'headers', // The request headers
-            'data', // The request data
-            'body', // The request body
-            'preRequestScript', // The pre-request script
-            'tests', // The test script
-            'responses', // The responses
-            'responseSize', // The size of the response
-            'responseTime', // The time taken for the response
-            'responseCode', // The response code
-            'responseBody', // The response body
-            'responseHeaders' // The response headers
+            'method', 
+            'url', 
+            'headers', 
+            'data', 
+            'body', 
+            'preRequestScript', 
+            'tests', 
+            'responses', 
+            'responseSize', 
+            'responseTime', 
+            'responseCode', 
+            'responseBody', 
+            'responseHeaders'
         ],
         "require": [
-            // Methods
             'send'
         ],
         "response": [
-            // Methods
             'toJSON',
             'toObject',
             'code',
@@ -167,15 +156,13 @@ const structure = {
             'body',
             'text',
             'json',
-            // Properties
-            'responseTime', // The response time of the request in milliseconds
-            'responseSize', // The size of the response in bytes
-            'responseSizeBody', // The size of the response body in bytes
+            'responseTime', 
+            'responseSize', 
+            'responseSizeBody', 
             'stream',
-            'members' // Retrieves an array of headers
+            'members'
         ],
         "sendRequest": [
-            // Methods
             'get',
             'post',
             'put',
@@ -186,12 +173,10 @@ const structure = {
             'send'
         ],
         "test": [
-            // Methods
             'describe',
             'it'
         ],
         "variables": [
-            // Methods
             'get',
             'set',
             'clear',
@@ -200,7 +185,6 @@ const structure = {
             'unset'
         ],
         "visualizer": [
-            // Methods
             'set',
             'get',
             'clear'
@@ -252,26 +236,8 @@ axiosInstance.interceptors.response.use(
 export default axiosInstance;
 `;
 
-// Content template for environment methods
-const environmentMethodTemplate = (methodName) => `
-import axiosInstance from '../axiosInstance';
-
-export const ${methodName} = () => {
-    // Add your implementation here
-};
-`;
-
-// Content template for collectionVariables methods
-const collectionVariablesMethodTemplate = (methodName) => `
-import axiosInstance from '../axiosInstance';
-
-export const ${methodName} = () => {
-    // Add your implementation here
-};
-`;
-
-// Content template for cookies methods
-const cookiesMethodTemplate = (methodName) => `
+// Content templates for various methods
+const methodTemplate = (methodName) => `
 import axiosInstance from '../axiosInstance';
 
 export const ${methodName} = () => {
@@ -289,16 +255,7 @@ const createFiles = (baseDir, structure) => {
 
         structure[dir].forEach(file => {
             const filePath = path.join(dirPath, file + '.ts');
-            let content = '';
-
-            if (dir === 'environment') {
-                content = environmentMethodTemplate(file);
-            } else if (dir === 'collectionVariables') {
-                content = collectionVariablesMethodTemplate(file);
-            } else if (dir === 'cookies') {
-                content = cookiesMethodTemplate(file);
-            }
-
+            let content = methodTemplate(file);
             fs.writeFileSync(filePath, content, 'utf8');
         });
     });
