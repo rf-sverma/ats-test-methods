@@ -4,10 +4,7 @@ const pm = {
         disabled: 'boolean',
 
         // Gets the value of a collection variable by key
-        get: (key) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            return currentEnv.collectionVariables[key];
-        },
+        get: ,
 
         // Checks if a collection variable exists by key
         has: (key) => {
@@ -238,7 +235,7 @@ const pm = {
                 }
                 return value;
             };
-            
+
             const substitutions = {};
             for (const key in currentEnv.variables) {
                 substitutions[key] = resolveValue(currentEnv.variables[key], currentEnv.variables);

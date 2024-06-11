@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import pm from "./index";
+import ats from "./index.js";
 
 const docsDir = path.join(__dirname, "docs");
 
@@ -81,9 +81,9 @@ const generateCategoryDocs = (
 };
 
 // Generate documentation for each category using JSDoc template
-generateCategoryDocs("jsdoc", pm, jsdocTemplate);
+generateCategoryDocs("jsdoc", ats, jsdocTemplate);
 
 // Generate documentation for each category using TSDoc template
-generateCategoryDocs("tsdoc", pm, tsdocTemplate);
+generateCategoryDocs("tsdoc", ats, tsdocTemplate);
 
 console.log("Documentation generated successfully!");

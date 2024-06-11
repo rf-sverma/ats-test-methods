@@ -19,6 +19,7 @@ const structure = {
             "forEachParent", 
             "replaceIn", 
             "set", 
+            "get",
             "unset"
         ],
         "cookies": [
@@ -79,19 +80,7 @@ const structure = {
             'to.not.have.property',
             'to.have.length',
             'to.be.within',
-            'to.not.be.within',
-            'response', 
-            'environment', 
-            'globals', 
-            'collectionVariables', 
-            'pm', 
-            'responseTime', 
-            'responseCode', 
-            'responseHeaders', 
-            'responseBody', 
-            'environmentVariables', 
-            'globalsVariables', 
-            'collectionVariablesVariables'
+            'to.not.be.within'
         ],
         "globals": [
             'get',
