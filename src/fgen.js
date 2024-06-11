@@ -6,7 +6,19 @@ const structure = {
     "ats": {
         "environment": ["clear.ts", "disableTracking.ts", "enableTracking.ts", "findInParents.ts"],
         "collectionVariables": ["clear.ts", "disableTracking.ts", "enableTracking.ts", "findInParents.ts", "findSubstitutions.ts", "forEachParent.ts", "replaceIn.ts", "set.ts", "unset.ts"],
-        "cookies": ["add.ts", "all.ts", "append.ts", "clear.ts", "count.ts", "eachParent.ts", "indexOf.ts", "insert.ts", "insertAfter.ts", "jar.ts", "one.ts", "populate.ts", "prepend.ts", "reduce.ts", "remove.ts", "repopulate.ts", "toObject.ts", "toString.ts", "upsert.ts", "assimilate.ts"]
+        "cookies": ["add.ts", "all.ts", "append.ts", "clear.ts", "count.ts", "eachParent.ts", "indexOf.ts", "insert.ts", "insertAfter.ts", "jar.ts", "one.ts", "populate.ts", "prepend.ts", "reduce.ts", "remove.ts", "repopulate.ts", "toObject.ts", "toString.ts", "upsert.ts", "assimilate.ts"],
+        "execution":[],
+        "expect":[],
+        "globals":[],
+        "info":[],
+        "iterationData":[],
+        "request":[],
+        "require":[],
+        "response":[],
+        "sendRequest":[],
+        "test":[],
+        "variables":[],
+        "visualizer":[],
     }
 };
 
