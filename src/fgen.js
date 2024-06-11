@@ -4,27 +4,214 @@ const path = require('path');
 // Define the structure of the files and directories
 const structure = {
     "ats": {
-        "environment": ["clear.ts", "disableTracking.ts", "enableTracking.ts", "findInParents.ts"],
-        "collectionVariables": ["clear.ts", "disableTracking.ts", "enableTracking.ts", "findInParents.ts", "findSubstitutions.ts", "forEachParent.ts", "replaceIn.ts", "set.ts", "unset.ts"],
-        "cookies": ["add.ts", "all.ts", "append.ts", "clear.ts", "count.ts", "eachParent.ts", "indexOf.ts", "insert.ts", "insertAfter.ts", "jar.ts", "one.ts", "populate.ts", "prepend.ts", "reduce.ts", "remove.ts", "repopulate.ts", "toObject.ts", "toString.ts", "upsert.ts", "assimilate.ts"],
-        "execution":[],
-        "expect":[],
-        "globals":[],
-        "info":[],
-        "iterationData":[],
-        "request":[],
-        "require":[],
-        "response":[],
-        "sendRequest":[],
-        "test":[],
-        "variables":[],
-        "visualizer":[],
+        "environment": [
+            "clear", 
+            "disableTracking", 
+            "enableTracking", 
+            "findInParents"
+        ],
+        "collectionVariables": [
+            "clear", 
+            "disableTracking", 
+            "enableTracking", 
+            "findInParents", 
+            "findSubstitutions", 
+            "forEachParent", 
+            "replaceIn", 
+            "set", 
+            "unset"
+        ],
+        "cookies": [
+            "add", 
+            "all", 
+            "append", 
+            "clear", 
+            "count", 
+            "eachParent", 
+            "indexOf", 
+            "insert", 
+            "insertAfter", 
+            "jar", 
+            "one", 
+            "populate", 
+            "prepend", 
+            "reduce", 
+            "remove", 
+            "repopulate", 
+            "toObject", 
+            "toString", 
+            "upsert", 
+            "assimilate"
+        ],
+        "execution": ["location"],
+        "expect": [
+            // Methods
+            'to.be',
+            'to.not',
+            'to.equal',
+            'to.not.equal',
+            'to.eql',
+            'to.not.eql',
+            'to.have',
+            'to.not.have',
+            'to.be.oneOf',
+            'to.not.be.oneOf',
+            'to.match',
+            'to.not.match',
+            'to.be.above',
+            'to.not.be.above',
+            'to.be.below',
+            'to.not.be.below',
+            'to.have.jsonBody',
+            'to.not.have.jsonBody',
+            'to.have.header',
+            'to.not.have.header',
+            'to.have.jsonBody',
+            'to.not.have.jsonBody',
+            'to.exist',
+            'to.not.exist',
+            'to.be.true',
+            'to.be.false',
+            'to.be.null',
+            'to.be.undefined',
+            'to.be.a',
+            'to.not.be.a',
+            'to.have.property',
+            'to.not.have.property',
+            'to.have.length',
+            'to.be.within',
+            'to.not.be.within',
+            // Properties
+            'response', // Access the response object
+            'environment', // Access the environment object
+            'globals', // Access the globals object
+            'collectionVariables', // Access the collectionVariables object
+            'pm', // Access the pm object
+            'responseTime', // The response time of the request in milliseconds
+            'responseCode', // The status code of the response
+            'responseHeaders', // The headers of the response
+            'responseBody', // The body of the response
+            'environmentVariables', // The environment variables
+            'globalsVariables', // The global variables
+            'collectionVariablesVariables' // The collection variables
+        ],
+        "globals": [
+            // Methods
+            'get',
+            'set',
+            'unset',
+            // Properties
+            'variables' // The global variables
+        ],
+        "info": [
+            // Methods
+            'environment',
+            'iteration',
+            'request',
+            'response',
+            'variables',
+            // Properties
+            'environment', // The environment details
+            'request', // The request details
+            'response', // The response details
+            'collection' // The collection details
+        ],
+        "iterationData": [
+            // Properties
+            'vars', // The iteration data variables
+            'cursor', // The cursor of the current iteration
+            'cycles', // The number of cycles in the iteration
+            'position' // The position in the iteration
+        ],
+        "request": [
+            // Methods
+            'auth',
+            'body',
+            'clearTimeout',
+            'getHeader',
+            'getUrl',
+            'header',
+            'json',
+            'noAuth',
+            'removeHeader',
+            'send',
+            'timeout',
+            // Properties
+            'method', // The request method
+            'url', // The request URL
+            'headers', // The request headers
+            'data', // The request data
+            'body', // The request body
+            'preRequestScript', // The pre-request script
+            'tests', // The test script
+            'responses', // The responses
+            'responseSize', // The size of the response
+            'responseTime', // The time taken for the response
+            'responseCode', // The response code
+            'responseBody', // The response body
+            'responseHeaders' // The response headers
+        ],
+        "require": [
+            // Methods
+            'send'
+        ],
+        "response": [
+            // Methods
+            'toJSON',
+            'toObject',
+            'code',
+            'status',
+            'headers',
+            'hasHeader',
+            'header',
+            'body',
+            'text',
+            'json',
+            // Properties
+            'responseTime', // The response time of the request in milliseconds
+            'responseSize', // The size of the response in bytes
+            'responseSizeBody', // The size of the response body in bytes
+            'stream',
+            'members' // Retrieves an array of headers
+        ],
+        "sendRequest": [
+            // Methods
+            'get',
+            'post',
+            'put',
+            'delete',
+            'patch',
+            'head',
+            'options',
+            'send'
+        ],
+        "test": [
+            // Methods
+            'describe',
+            'it'
+        ],
+        "variables": [
+            // Methods
+            'get',
+            'set',
+            'clear',
+            'replaceIn',
+            'has',
+            'unset'
+        ],
+        "visualizer": [
+            // Methods
+            'set',
+            'get',
+            'clear'
+        ]
     }
 };
 
+
 // Content for axiosInstance.ts
 const axiosInstanceContent = `
-import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 
 const axiosInstance: AxiosInstance = axios.create({
     baseURL: 'https://api.example.com', // Set your base URL here
@@ -35,7 +222,7 @@ const axiosInstance: AxiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(
-    (config: InternalAxiosRequestConfig) => {
+    (config: AxiosRequestConfig) => {
         const token = localStorage.getItem('token');
         if (token) {
             config.headers.Authorization = \`Bearer \${token}\`;
@@ -102,18 +289,15 @@ const createFiles = (baseDir, structure) => {
         }
 
         structure[dir].forEach(file => {
-            const filePath = path.join(dirPath, file);
+            const filePath = path.join(dirPath, file + '.ts');
             let content = '';
 
             if (dir === 'environment') {
-                const methodName = path.basename(file, '.ts');
-                content = environmentMethodTemplate(methodName);
+                content = environmentMethodTemplate(file);
             } else if (dir === 'collectionVariables') {
-                const methodName = path.basename(file, '.ts');
-                content = collectionVariablesMethodTemplate(methodName);
+                content = collectionVariablesMethodTemplate(file);
             } else if (dir === 'cookies') {
-                const methodName = path.basename(file, '.ts');
-                content = cookiesMethodTemplate(methodName);
+                content = cookiesMethodTemplate(file);
             }
 
             fs.writeFileSync(filePath, content, 'utf8');

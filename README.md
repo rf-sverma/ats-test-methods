@@ -1,2 +1,193 @@
 # ats-test-methods
  
+- ats
+  - environment
+    - clear
+    - disableTracking
+    - enableTracking
+    - findInParents
+  - collectionVariables
+    - clear
+    - disableTracking
+    - enableTracking
+    - findInParents
+    - findSubstitutions
+    - forEachParent
+    - replaceIn
+    - set
+    - unset
+  - cookies
+    - add
+    - all
+    - append
+    - clear
+    - count
+    - eachParent
+    - indexOf
+    - insert
+    - insertAfter
+    - jar
+    - one
+    - populate
+    - prepend
+    - reduce
+    - remove
+    - repopulate
+    - toObject
+    - toString
+    - upsert
+    - assimilate
+  - execution
+    - location
+  - expect
+    - Methods
+      - to.be
+      - to.not
+      - to.equal
+      - to.not.equal
+      - to.eql
+      - to.not.eql
+      - to.have
+      - to.not.have
+      - to.be.oneOf
+      - to.not.be.oneOf
+      - to.match
+      - to.not.match
+      - to.be.above
+      - to.not.be.above
+      - to.be.below
+      - to.not.be.below
+      - to.have.jsonBody
+      - to.not.have.jsonBody
+      - to.have.header
+      - to.not.have.header
+      - to.have.jsonBody
+      - to.not.have.jsonBody
+      - to.exist
+      - to.not.exist
+      - to.be.true
+      - to.be.false
+      - to.be.null
+      - to.be.undefined
+      - to.be.a
+      - to.not.be.a
+      - to.have.property
+      - to.not.have.property
+      - to.have.length
+      - to.be.within
+      - to.not.be.within
+    - Properties
+      - response
+      - environment
+      - globals
+      - collectionVariables
+      - pm
+      - responseTime
+      - responseCode
+      - responseHeaders
+      - responseBody
+      - environmentVariables
+      - globalsVariables
+      - collectionVariablesVariables
+  - globals
+    - get
+    - set
+    - unset
+    - variables
+  - info
+    - environment
+    - iteration
+    - request
+    - response
+    - collection
+  - iterationData
+    - vars
+    - cursor
+    - cycles
+    - position
+  - request
+    - auth
+    - body
+    - clearTimeout
+    - getHeader
+    - getUrl
+    - header
+    - json
+    - noAuth
+    - removeHeader
+    - send
+    - timeout
+    - method
+    - url
+    - headers
+    - data
+    - body
+    - preRequestScript
+    - tests
+    - responses
+    - responseSize
+    - responseTime
+    - responseCode
+    - responseBody
+    - responseHeaders
+  - require
+    - send
+  - response
+    - toJSON
+    - toObject
+    - code
+    - status
+    - headers
+    - hasHeader
+    - header
+    - body
+    - text
+    - json
+    - responseTime
+    - responseSize
+    - responseSizeBody
+    - stream
+    - members
+  - sendRequest
+    - get
+    - post
+    - put
+    - delete
+    - patch
+    - head
+    - options
+    - send
+  - test
+    - describe
+    - it
+  - variables
+    - get
+    - set
+    - clear
+    - replaceIn
+    - has
+    - unset
+  - visualizer
+    - set
+    - get
+    - clear
+
+
+
+Inside "ats", there are 15 root levels.
+
+1. "environment"
+2. "collectionVariables"
+3. "cookies"
+4. "execution"
+5. "expect"
+6. "globals"
+7. "info"
+8. "iterationData"
+9. "request"
+10. "require"
+11. "response"
+12. "sendRequest"
+13. "test"
+14. "variables"
+15. "visualizer"
