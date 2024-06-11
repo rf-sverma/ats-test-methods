@@ -208,7 +208,6 @@ const structure = {
     }
 };
 
-
 // Content for axiosInstance.ts
 const axiosInstanceContent = `
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
@@ -309,8 +308,6 @@ const createFiles = (baseDir, structure) => {
 fs.writeFileSync(path.join(__dirname, 'ats', 'axiosInstance.ts'), axiosInstanceContent, 'utf8');
 
 // Create directories and files
-createFiles(path.join(__dirname, 'ats'), { "environment": structure.ats.environment });
-createFiles(path.join(__dirname, 'ats'), { "collectionVariables": structure.ats.collectionVariables });
-createFiles(path.join(__dirname, 'ats'), { "cookies": structure.ats.cookies });
+createFiles(path.join(__dirname, 'ats'), structure.ats);
 
 console.log('Files and directories created successfully');

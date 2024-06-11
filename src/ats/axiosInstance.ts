@@ -1,5 +1,5 @@
 
-import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 
 const axiosInstance: AxiosInstance = axios.create({
     baseURL: 'https://api.example.com', // Set your base URL here
@@ -10,7 +10,7 @@ const axiosInstance: AxiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(
-    (config: InternalAxiosRequestConfig) => {
+    (config: AxiosRequestConfig) => {
         const token = localStorage.getItem('token');
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
