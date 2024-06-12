@@ -4,6 +4,8 @@
  * @typeparam T The type of the value being asserted.
  */
 class Assertion {
+    /** The value to be asserted. */
+    value;
     /**
      * Constructs an Assertion instance with the given value.
      *

@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
+import { join } from 'path';
 
 // Define the structure of the files and directories
 const structure = {
@@ -237,23 +237,23 @@ export const ${methodName} = () => {
 // Function to create directories and files
 const createFiles = (baseDir, structure) => {
     Object.keys(structure).forEach(dir => {
-        const dirPath = path.join(baseDir, dir);
-        if (!fs.existsSync(dirPath)) {
-            fs.mkdirSync(dirPath, { recursive: true });
+        const dirPath = join(baseDir, dir);
+        if (!existsSync(dirPath)) {
+            mkdirSync(dirPath, { recursive: true });
         }
 
         structure[dir].forEach(file => {
-            const filePath = path.join(dirPath, file + '.ts');
+            const filePath = join(dirPath, file + '.ts');
             let content = methodTemplate(file);
-            fs.writeFileSync(filePath, content, 'utf8');
+            writeFileSync(filePath, content, 'utf8');
         });
     });
 };
 
 // Create axiosInstance.ts
-fs.writeFileSync(path.join(__dirname, 'ats', 'axiosInstance.ts'), axiosInstanceContent, 'utf8');
+writeFileSync(join(__dirname, 'ats', 'axiosInstance.ts'), axiosInstanceContent, 'utf8');
 
 // Create directories and files
-createFiles(path.join(__dirname, 'ats'), structure.ats);
+createFiles(join(__dirname, 'ats'), structure.ats);
 
 console.log('Files and directories created successfully');

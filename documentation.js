@@ -946,7 +946,7 @@ const pm = {
             let headers = currentEnv.request.headers;
             if (options) {
                 if (options.ignoreCase) {
-                    headers = headers.map(header => (Object.assign(Object.assign({}, header), { key: header.key.toLowerCase() })));
+                    headers = headers.map(header => ({ ...header, key: header.key.toLowerCase() }));
                 }
                 if (options.enabled) {
                     headers = headers.filter(header => !header.disabled);
@@ -958,7 +958,7 @@ const pm = {
                     }, {});
                 }
                 if (options.sanitizeKeys) {
-                    headers = headers.map(header => (Object.assign(Object.assign({}, header), { key: header.key.replace(/[^a-zA-Z0-9]/g, '') })));
+                    headers = headers.map(header => ({ ...header, key: header.key.replace(/[^a-zA-Z0-9]/g, '') }));
                 }
             }
             return headers;

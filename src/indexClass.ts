@@ -1,40 +1,48 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Create __dirname in an ES module context
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 class Ats {
     ats: { [key: string]: any };
 
     constructor() {
         this.ats = {};
-        this.generateMethods();
+        this.generateMethods().then(() => {
+            console.log("Methods generated");
+        });
     }
 
-    private generateMethods() {
+    private async generateMethods() {
         const baseDir = path.join(__dirname, 'ats');
         const categories = fs.readdirSync(baseDir);
-        
-        categories.forEach(category => {
+
+        for (const category of categories) {
             const categoryDirPath = path.join(baseDir, category);
             if (fs.statSync(categoryDirPath).isDirectory()) {
                 this.ats[category] = {};
                 const files = fs.readdirSync(categoryDirPath);
-                files.forEach(file => {
-                    if (file.endsWith('.ts')) {
-                        const methodName = path.basename(file, '.ts');
-                        const module = require(path.join(categoryDirPath, file));
-                        this.ats[category][methodName] = module.default || module[methodName];
-                    } else if (file === 'index.ts') {
-                        const module = require(path.join(categoryDirPath, file));
-                        Object.assign(this.ats[category], module.default || module);
-                    }
-                });
+
+                for (const file of files) {
+                    const methodName = path.basename(file, '.js');
+                    const modulePath = path.join(categoryDirPath, file);
+                    
+                    const moduleName = (file === 'index.js') ? category : methodName;
+                    const module = await import(modulePath);
+                    this.ats[category][moduleName] = module.default || module[methodName];
+                }
             }
-        });
+        }
     }
 }
 
-const ats = new Ats(); // exporting the initiated class . Change this to use the raw class instead
+const atsInstance = new Ats(); // Initialize the Ats class
 
-export default ats;
-
-
+// Export the atsInstance after ensuring methods are loaded
+export default (async () => {
+    await atsInstance.generateMethods();
+    return atsInstance.ats;
+})();

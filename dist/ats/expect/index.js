@@ -4,6 +4,8 @@
  * @typeparam T The type of the value being asserted.
  */
 class Assertion {
+    /** The value to be asserted. */
+    value;
     /**
      * Constructs an Assertion instance with the given value.
      *
@@ -19,6 +21,7 @@ class Assertion {
      * @throws Error if the value is not equal to the expected value.
      */
     equal(expected) {
+        console.log("EQUAL CHECK ", this.value);
         if (this.value !== expected) {
             throw new Error(`Expected ${this.value} to equal ${expected}`);
         }
@@ -159,5 +162,6 @@ class Assertion {
     }
 }
 export default function (data) {
+    console.log("ASSERT EXPORT ");
     return new Assertion(data);
 }
