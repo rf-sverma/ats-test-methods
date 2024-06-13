@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import ats from "./index.js";
+import ats from "./indexFunc.js";
 const docsDir = path.join(__dirname, "docs");
 // Create the docs directory if it doesn't exist
 if (!fs.existsSync(docsDir)) {

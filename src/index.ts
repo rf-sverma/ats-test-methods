@@ -1,32 +1,55 @@
+/**
+ * @module
+ * This module will help in exporting the ats library in form of a functional module
+ */
+
+
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-// Define the base directory
-const baseDir = path.join(__dirname, 'ats');
+// Create __dirname in an ES module context
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Define the ats object
-const ats: { [key: string]: any } = {};
+class Ats {
+    ats: { [key: string]: any };
 
-// Function to generate methods dynamically
-const generateMethods = (dirPath: string, category: string) => {
-    const files = fs.readdirSync(dirPath);
-    files.forEach(file => {
-        const methodName = path.basename(file, '.ts');
-        const module = require(path.join(dirPath, file));
-        ats[category][methodName] = module[methodName];
-    });
-};
-
-// Dynamically generate methods for each category
-const categories = fs.readdirSync(baseDir);
-categories.forEach(category => {
-    const categoryDirPath = path.join(baseDir, category);
-    if (fs.statSync(categoryDirPath).isDirectory()) {
-        ats[category] = {};
-        generateMethods(categoryDirPath, category);
+    constructor() {
+        this.ats = {};
+        this.generateMethods().then(() => {
+            console.log("Methods generated");
+        });
     }
-});
 
-export default ats;
+    private async generateMethods() {
+        const baseDir = path.join(__dirname, 'ats');
+        const categories = fs.readdirSync(baseDir);
 
+        for (const category of categories) {
+            const categoryDirPath = path.join(baseDir, category);
+            if (fs.statSync(categoryDirPath).isDirectory()) {
+                this.ats[category] = {};
+                const files = fs.readdirSync(categoryDirPath);
 
+                for (const file of files) {
+                    const methodName = path.basename(file, '.js');
+                    const modulePath = path.join(categoryDirPath, file);
+                    
+                    const moduleName = (file === 'index.js') ? category : methodName;
+                    const module = await import(modulePath);
+                    this.ats[category][moduleName] = module.default || module[methodName];
+                }
+            }
+        }
+    }
+}
+
+const atsInstance = new Ats(); // Initialize the Ats class
+
+// Export the atsInstance after ensuring methods are loaded
+export default (async () => {
+    //@ts-ignore
+    await atsInstance.generateMethods();
+    return atsInstance.ats;
+})();

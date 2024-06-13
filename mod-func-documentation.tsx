@@ -57,84 +57,46 @@ const pm = {
 
         // Clears all collection variables
         clear: () => {
-            const currentEnv = JSON.parse(localStorage.getItem(''));
-            currentEnv.collectionVariables = {};
-            localStorage.setItem('envId', JSON.stringify(currentEnv));
-            // make a call to clear the env data by axios
-            // axios.post(`/environment/${currentEnv.id}/collectionVariables/clear/envId`);
+           
         },
 
         // Disables tracking of collection variables
         disableTracking: () => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            currentEnv.trackingEnabled = false;
-            localStorage.setItem('envId', JSON.stringify(currentEnv));
-            // make a call to disable tracking by axios
-            // axios.post(`/environment/${currentEnv.id}/collectionVariables/disableTracking`);
+           
         },
 
         // Enables tracking of collection variables with optional settings
         enableTracking: (options) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            currentEnv.trackingEnabled = true;
-            localStorage.setItem('envId', JSON.stringify(currentEnv));
-            // make a call to enable tracking by axios
-            // axios.post(`/environment/${currentEnv.id}/collectionVariables/enableTracking`, { options });
+          
         },
         // Finds a property in parent environments using a customizer function
         findInParents: (property, customizer) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            let parent = currentEnv.parent;
-            while (parent) {
-                if (customizer(parent[property])) {
-                    return parent[property];
-                }
-                parent = parent.parent;
-            }
-            return null;
+           
         },
 
         // Finds and returns substitutions for collection variables
         findSubstitutions: () => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            return currentEnv.collectionVariables;
+         
         },
 
         // Iterates over each parent environment with optional root inclusion
         forEachParent: (options, iterator) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            let parent = currentEnv.parent;
-            if (options.withRoot) {
-                iterator(currentEnv);
-            }
-            while (parent) {
-                iterator(parent);
-                parent = parent.parent;
-            }
+           
         },
 
         // Replaces placeholders in a template with corresponding collection variable values
         replaceIn: (template) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            return template.replace(/\{\{(.*?)\}\}/g, (_, key) => currentEnv.collectionVariables[key] || '');
+           
         },
 
         // Sets a collection variable with an optional type
         set: (key, value, type) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            currentEnv.collectionVariables[key] = value;
-            localStorage.setItem('envId', JSON.stringify(currentEnv));
-            // make a call to update the env data by axios
-            // axios.post(`/environment/${currentEnv.id}/variables`, { key, value, type });
+           
         },
 
         // Unsets (removes) a collection variable by key
         unset: (key) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            delete currentEnv.collectionVariables[key];
-            localStorage.setItem('envId', JSON.stringify(currentEnv));
-            // make a call to update the env data by axios
-            // axios.delete(`/environment/${currentEnv.id}/variables/${key}`);
+          
         }
     },
 
@@ -143,306 +105,158 @@ const pm = {
         // add : Add a cookie to the cookies data array.
 
         add: (item) => {
-            environment.cookies.data.push(item);
-            // make axios call to add the cookie to the cookies data array
+           
         },
 
         // append: Add a cookie to the cookies data array.
         append: (item) => {
-            environment.cookies.data.push(item);
-            // make axios call to add the cookie to the cookies data array
+           
         },
 
 
-        // all: Returns all cookies.
+       
         all: () => {
-            // let cookies = axios.get('/cookies'); //make axios call to get all cookies
-            // return cookies;
-
-            // else return environment.cookies.data; which is an array of cookies in local storage of the browser
-            // return environment.cookies.data;
+           
         },
 
         // clear: Clears all cookies.
         clear: () => {
-            // make axios call to clear all cookies
-            // let cookies = axios.delete('/cookies');
-            environment.cookies.data = [];
+           
         },
 
         // count: Returns the number of cookies.
         count: () => {
-            // make axios call to get the number of cookies
-            // let cookies = axios.get('/cookies');
-            // return cookies.length;
-
-            // else return the length of the cookies data array
-            return environment.cookies.data.length;
+           
         },
 
         // jar: Returns all cookies (same as all for simplicity).
         jar: () => {
-            // let cookies = axios.get('/cookies'); //make axios call to get all cookies
-            // return cookies;
-
-            // else return environment.cookies.data; which is an array of cookies in local storage of the browser
-            return environment.cookies.data;
+           
         },
 
         // toString: Converts cookies data to a JSON string.
         toString: () => {
-            // make axios call to get all cookies
-            // let cookies = axios.get('/cookies');
-            // return JSON.stringify(cookies);
-
-            // else return the cookies data array as a JSON string
-            return JSON.stringify(environment.cookies.data);
+           
         },
 
         // remove: Removes cookies that match the given predicate.
-        remove: (predicate, context) => {
-            // the cookie data has to get from the environment or the axios call then iterate over it
-            environment.cookies.data = environment.cookies.data.filter(item => !predicate.call(context, item));
-            // make axios call to remove the cookies that match the given predicate
-            // axios.delete('/cookies', { data: { predicate } });
+        remove: () => {
+           
         },
 
         // reduce: Reduces the cookies data using the given function.
-        reduce: (iterator, accumulator, context) => {
-            let data = environment.cookies.data.reduce((acc, item, index) => iterator.call(context, acc, item, index), accumulator);
-            // make api call to add the data to the cookies
+        reduce: () => {
+          
         },
 
         // eachParent: Iterates over parent cookies (assuming a parent property).
-        eachParent: (iterator, context) => {
-            // Assuming eachParent is supposed to iterate over parent cookies
-            const parents = environment.cookies.data.filter(item => item.parent);
-            parents.forEach((item, index) => iterator.call(context, item, index));
+        eachParent: () => {
+           
         },
 
-        // indexOf: Gets the index of a cookie.
-        indexOf: (item) => {
-            return cookies.data.indexOf(item);
+     
+        indexOf: () => {
+           
         },
 
-        // prepend: Adds a cookie to the beginning of the cookies data array.
-        prepend: (item) => {
-            let cookies = axios.get('/cookies');
-            cookies.data.unshift(item);
-            // make axios call to add the cookie to the cookies data array
-        },
+        
 
-        // upsert: Updates an existing cookie or inserts a new one.
-        upsert: (item) => {
-            let cookies = axios.get('/cookies');
-            const index = cookies.data.findIndex(cookie => cookie.key === item.key);
-            if (index !== -1) {
-                cookies.data[index] = item;
-            } else {
-                cookies.data.push(item);
-            }
+       
+        upsert: () => {
+           
             // make axios call to update the cookie
         },
 
-        // populate: Replaces the current cookies data with the given items.
-        populate: (items) => {
-            let cookies = axios.get('/cookies');
-            cookies.data = items;
-            // make axios call to populate the cookies data
+       
+        populate: () => {
+         
         },
 
-        // repopulate: Same as populate.
-        repopulate: (items) => {
-            let cookies = axios.get('/cookies');
-            cookies.data = items;
-            // make axios call to repopulate the cookies data
+        
+        repopulate: () => {
+           
         },
 
-        // one: Finds a cookie by ID.
-        one: (id) => {
-            let cookies = axios.get('/cookies');
-            let data = cookies.data.find(cookie => cookie.id === id);
-            return data;
+       
+        one: () => {
+            
         },
 
-        // insert: Inserts a cookie before another cookie.
-        insert: (item, before) => {
-            let cookies = axios.get('/cookies');
-            const index = cookies.data.indexOf(before);
-            if (index !== -1) {
-                cookies.data.splice(index, 0, item);
-            } else {
-                cookies.data.push(item);
-            }
-            // make axios call to insert the cookie before another cookie
+       
+        insert: () => {
+           
         },
 
-        // insertAfter: Inserts a cookie after another cookie.
-        insertAfter: (item, after) => {
-            let cookies = axios.get('/cookies');
-            const index = cookies.data.indexOf(after);
-            if (index !== -1) {
-                cookies.data.splice(index + 1, 0, item);
-            } else {
-                cookies.data.push(item);
-            }
-            // make axios call to insert the cookie after another cookie
+        
+        insertAfter: () => {
+          
         },
 
-        // assimilate: Assimilates a source of cookies data.
-        assimilate: (source, prune) => {
-            let cookies = axios.get('/cookies');
-            if (Array.isArray(source)) {
-                cookies.data = prune ? source : cookies.data.concat(source);
-            } else if (source === 'PropertyList') {
-                // Assuming PropertyList is a predefined list of cookies
-                cookies.data = prune ? PropertyList : cookies.data.concat(PropertyList);
-            }
+
+        assimilate: () => {
+            
         },
 
-        // toObject: Converts cookies data to an object with various options.
-        toObject: (excludeDisabled, caseSensitive, multiValue, sanitizeKeys) => {
-            let result = {};
-            let cookies = axios.get('/cookies');
-            cookies.data.forEach(cookie => {
-                if (excludeDisabled && cookie.disabled) return;
-
-                let key = sanitizeKeys ? cookie.key.replace(/[^a-zA-Z0-9]/g, '') : cookie.key;
-                if (!caseSensitive) key = key.toLowerCase();
-
-                if (multiValue) {
-                    if (!result[key]) result[key] = [];
-                    result[key].push(cookie.value);
-                } else {
-                    result[key] = cookie.value;
-                }
-            });
-            return result;
+       
+        toObject: () => {
+            
         }
     },
 
     environment: {
 
         clear: () => {
-            // make axios call to clear the environment variables using this info :{currentEnv}
+          
 
         },
 
 
-        // Disables tracking of collection variables
+        
         disableTracking: () => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            currentEnv.trackingEnabled = false;
-            localStorage.setItem('envId', JSON.stringify(currentEnv));
-            // make a call to disable tracking by axios
-            // axios.post(`/environment/${currentEnv.id}/collectionVariables/disableTracking`);
+           
         },
 
-        // Enables tracking of collection variables with optional settings
-        enableTracking: (options) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            currentEnv.trackingEnabled = true;
-            localStorage.setItem('envId', JSON.stringify(currentEnv));
-            // make a call to enable tracking by axios
-            // axios.post(`/environment/${currentEnv.id}/collectionVariables/enableTracking`, { options });
+        
+        enableTracking: () => {
+           
         },
 
-        findInParents: (property: string, customizer?: (...params: any[]) => any) => {
-            const currentEnv = localStorage.getItem('envId');
-            const findProperty = (obj, prop) => {
-                if (obj.hasOwnProperty(prop)) return obj[prop];
-                for (const key in obj) {
-                    if (typeof obj[key] === 'object') {
-                        const result = findProperty(obj[key], prop);
-                        if (result !== undefined) {
-                            return result;
-                        }
-                    }
-                }
-                return undefined;
-            };
-            let value = findProperty(currentEnv.variables, property);
-            if (customizer && typeof customizer === 'function') value = customizer(value);
-            return value;
+        findInParents: () => {
+            
         },
 
-//         this will find out if there is a variable in the parent environment that matches the given property and return it
-        findSubstitutions: () => {
-            const currentEnv = localStorage.getItem('envId');
-            const resolveValue = (value, vars) => {
-                if (typeof value === 'string' && value.startsWith('{{') && value.endsWith('}}')) {
-                    const key = value.slice(2, -2);
-                    // call axios to get the value of the key or use it from the variables if available
-                    return vars[key] ? resolveValue(vars[key], vars) : value;
-                }
-                return value;
-            };
-
-            const substitutions = {};
-            for (const key in currentEnv.variables) {
-                substitutions[key] = resolveValue(currentEnv.variables[key], currentEnv.variables);
-            }
-            return substitutions;
+ findSubstitutions: () => {
+           
         },
 
-        forEachParent: (options: { withRoot?: boolean; }, iterator: (...params: any[]) => any) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            const parents = currentEnv.parents || [];
-            if (options.withRoot) {
-                iterator(currentEnv);
-            }
-            parents.forEach(parent => {
-                iterator(parent);
-            });
+        forEachParent: () => {
+            
         },
 
 
         meta: () => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            return {
-                id: currentEnv.id,
-                name: currentEnv.name,
-                createdAt: currentEnv.createdAt,
-                updatedAt: currentEnv.updatedAt
-            };
+            
         },
 
 
         replaceIn: (template) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            return template.replace(/\{\{(.*?)\}\}/g, (_, key) => currentEnv.variables[key] || '');
+           
         },
 
-        set: (key, value, type) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            currentEnv.variables[key] = value;
-            localStorage.setItem('envId', JSON.stringify(currentEnv));
-            // make axios call to set the environment variables by this id :{currentEnv}
-            // axios.post(`/environment/${currentEnv.id}/variables`, { key, value, type });
+        set: () => {
+            
         },
 
         toJSON: () => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            return JSON.stringify(currentEnv);
+         
         },
 
-        toObject: (excludeDisabled, caseSensitive) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            let result = {};
-            for (const [key, value] of Object.entries(currentEnv.variables)) {
-                if (excludeDisabled && value.disabled) continue;
-                if (caseSensitive) result[key] = value.value;
-                else result[key.toLowerCase()] = value.value;
-            }
-            return result;
+        toObject: () => {
+            
         },
 
-        unset: (key) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            delete currentEnv.variables[key];
-            localStorage.setItem('envId', JSON.stringify(currentEnv));
-            // make axios call to unset the environment variable by this id :{currentEnv}
-            // axios.delete(`/environment/${currentEnv.id}/variables/${key}`);
+        unset: () => {
+          
         }
     },
 
@@ -877,11 +691,9 @@ const pm = {
     variables: {
 
 
-        // Clears all variables
+        
         clear: () => {
-            const currentEnv = localStorage.getItem('envId');
-            // make a call to clear the variables by axios
-            axios.delete(`/clear/variables/${currentEnv}`);
+           
         },
 
         // Disables tracking of variables
@@ -940,10 +752,9 @@ const pm = {
             return currentEnv.variables[key];
         },
 
-        // Checks if a variable exists by key
+        
         has: (key) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            return key in currentEnv.variables;
+            
         },
 
         // Returns the parent environment
@@ -952,53 +763,34 @@ const pm = {
             return currentEnv.parent;
         },
 
-        // Replaces placeholders in a template with corresponding variable values
-        replaceIn: (template) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            return template.replace(/\{\{(.*?)\}\}/g, (_, key) => currentEnv.variables[key] || '');
+        
+        replaceIn: () => {
+           
         },
 
         // Placeholder for the variable name
         name: 'string',
 
-        // Sets a variable with an optional type
-        set: (key, value, type) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            currentEnv.variables[key] = value;
-            localStorage.setItem('envId', JSON.stringify(currentEnv));
-            // make a call to update the variable data by axios
-            // axios.post(`/environment/${currentEnv.id}/variables`, { key, value, type });
+        
+        set: () => {
+           
         },
 
         // Unsets (removes) a variable by key
-        unset: (key) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            delete currentEnv.variables[key];
-            localStorage.setItem('envId', JSON.stringify(currentEnv));
-            // make a call to delete the variable by axios
-            axios.delete(`/environment/${currentEnv.id}/variables/${key}`);
+        unset: () => {
+           
         }
     },
 
     visualizer: {
-        // Clears the visualizer data
+       
         clear: () => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            currentEnv.visualizerData = null;
-            localStorage.setItem('envId', JSON.stringify(currentEnv));
-            // make a call to clear the visualizer data by axios
-            // axios.post(`/environment/${currentEnv.id}/clearVisualizer`);
+          
         },
 
-        // Sets the visualizer template and data with optional settings
-        set: (template, data, options) => {
-            const currentEnv = JSON.parse(localStorage.getItem('envId'));
-            currentEnv.visualizerTemplate = template;
-            currentEnv.visualizerData = data;
-            currentEnv.visualizerOptions = options;
-            localStorage.setItem('envId', JSON.stringify(currentEnv));
-            // make a call to update the visualizer data by axios
-            // axios.post(`/environment/${currentEnv.id}/setVisualizer`, { template, data, options });
+       
+        set: () => {
+          
         }
     }
 }
